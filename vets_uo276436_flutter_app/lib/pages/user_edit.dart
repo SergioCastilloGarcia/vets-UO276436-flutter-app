@@ -46,6 +46,9 @@ class StateUserEdit extends State<UserEdit> {
                   if (value == null || value.isEmpty) {
                     return 'por Favor digite el nombre';
                   }
+                  if (value.length < 5) {
+                    return 'El nombre debe tener al menos 5 caracteres';
+                  }
                   return null;
                 },
                 onSaved: (value) => nameController.text = value ?? '',
@@ -60,6 +63,9 @@ class StateUserEdit extends State<UserEdit> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'por favor digite los apellidos';
+                  }
+                  if (value.length < 5) {
+                    return 'Los apellidos deben tener al menos 5 caracteres';
                   }
                   return null;
                 },

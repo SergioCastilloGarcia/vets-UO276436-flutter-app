@@ -36,6 +36,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   if (value == null || value.isEmpty) {
                     return 'por Favor digite el nombre';
                   }
+                  if (value.length < 5) {
+                    return 'El nombre debe tener al menos 5 caracteres';
+                  }
                   return null;
                 },
                 onSaved: (value) => _name = value ?? '',
@@ -69,6 +72,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                       .hasMatch(value)) {
                     return 'Por favor, introduce un email válido';
+                  }
+                  if (value.length < 5) {
+                    return 'Los apellidos deben tener al menos 5 caracteres';
                   }
                   return null;
                 },
