@@ -66,6 +66,10 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                   if (value == null || value.isEmpty) {
                     return 'por favor digite el email';
                   }
+                  if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                      .hasMatch(value)) {
+                    return 'Por favor, introduce un email válido';
+                  }
                   return null;
                 },
                 onSaved: (value) {
@@ -81,6 +85,9 @@ class UserSignUpFormState extends State<UserSignUpForm> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'por favor digite el telefono ';
+                  }
+                  if (!RegExp(r'^[0-9]{9}$').hasMatch(value)) {
+                    return 'Por favor, introduce un número de teléfono válido';
                   }
                   return null;
                 },
