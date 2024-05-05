@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vets_uo276436_flutter_app/src/user.dart';
 import 'package:vets_uo276436_flutter_app/pages/user_signup_form.dart';
+import 'package:vets_uo276436_flutter_app/src/custom_alert_dialog.dart';
 
 class HomePage extends StatefulWidget {
   //final String _title;
@@ -42,8 +43,25 @@ class StateHomePage extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const UserSignUpForm())),
+          Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserSignUpForm()))
+              .then((newUser) => {
+                    if (newUser != null)
+                      {
+                        setState(() {
+                          users.add(newUser);
+                          String message =
+                              "El usuario ${newUser.name} ha sido registrado";
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomAlertDialog.create(
+                                context, 'Información', message),
+                          );
+                        })
+                      }
+                  }),
         },
         tooltip: "Registrar usuario",
         child: const Icon(Icons.add),
